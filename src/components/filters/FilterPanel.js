@@ -4,7 +4,7 @@ import './FilterPanel.css';
 
 const SPECIALTIES = [
   "General Physician", "Dentist", "Dermatologist", "Paediatrician",
-  "Gynaecologist", "ENT", "Diabetologist", "Cardiologist",
+  "Gynaecologist and Obstetrician", "ENT", "Diabetologist", "Cardiologist",
   "Physiotherapist", "Endocrinologist", "Orthopaedic", "Ophthalmologist",
   "Gastroenterologist", "Pulmonologist", "Psychiatrist", "Urologist",
   "Dietitian/Nutritionist", "Psychologist", "Sexologist", "Nephrologist",
@@ -16,7 +16,7 @@ const specialtyTestIdMap = {
   "Dentist": "Dentist",
   "Dermatologist": "Dermatologist",
   "Paediatrician": "Paediatrician",
-  "Gynaecologist": "Gynaecologist",
+  "Gynaecologist and Obstetrician": "Gynaecologist and Obstetrician",
   "ENT": "ENT",
   "Diabetologist": "Diabetologist",
   "Cardiologist": "Cardiologist",
