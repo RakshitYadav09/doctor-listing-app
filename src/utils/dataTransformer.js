@@ -1,4 +1,3 @@
-// Transform API data to a consistent format for the application
 export const transformDoctorData = (doctors) => {
     if (!doctors || !Array.isArray(doctors)) return [];
   
@@ -21,14 +20,13 @@ export const transformDoctorData = (doctors) => {
     }));
   };
   
-  // Extract years from experience string
   const getExperienceYears = (experienceStr) => {
     if (!experienceStr) return 0;
     const match = experienceStr.match(/(\d+)\s*Years?/i);
     return match ? parseInt(match[1]) : 0;
   };
   
-  // Get unique specialties from all doctors
+
   export const getAllSpecialties = (doctors) => {
     const specialtiesSet = new Set();
     
@@ -44,10 +42,8 @@ export const transformDoctorData = (doctors) => {
     
     return Array.from(specialtiesSet).sort();
   };
-  
-  // Map specialty names to required data-testid formats
+
   export const getSpecialtyTestId = (specialty) => {
-    // Replace "/" with "-" to match required format
     return specialty.replace(/\//g, '-');
   };
   
