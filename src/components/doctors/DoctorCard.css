@@ -3,16 +3,19 @@
   justify-content: space-between;
   align-items: flex-start;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 2px 8px rgba(21,101,192,0.07);
   padding: 28px 32px;
-  min-height: 120px;
+  min-height: 140px;
+  margin-bottom: 24px;
+  border: none;
 }
 
-.doctor-info {
+.doctor-card-left {
   display: flex;
-  gap: 22px;
   align-items: flex-start;
+  gap: 28px;
+  flex: 1 1 0;
 }
 
 .doctor-avatar img {
@@ -24,68 +27,104 @@
   background: #f5f7fa;
 }
 
-.doctor-details h2 {
-  font-size: 19px;
-  font-weight: 700;
-  color: #222;
-  margin: 0 0 3px 0;
+.doctor-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
 }
 
-.doctor-qualification {
-  font-size: 14px;
-  color: #546e7a;
-  margin-bottom: 2px;
+.doctor-details h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  margin: 0 0 2px 0;
 }
 
 .doctor-specialty {
   font-size: 15px;
-  color: #1976d2;
-  font-weight: 600;
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
+.doctor-qualification {
+  font-size: 15px;
+  color: #555;
   margin-bottom: 2px;
-  margin-top: 2px;
 }
 
 .doctor-experience {
-  font-size: 14px;
-  color: #607d8b;
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.doctor-clinic-row,
+.doctor-location-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #222;
   margin-bottom: 2px;
 }
 
-.doctor-location, .doctor-clinic {
-  font-size: 14px;
-  color: #607d8b;
-  margin-bottom: 2px;
+.doctor-clinic-icon,
+.doctor-location-icon {
+  color: #888;
+  margin-right: 1px;
 }
 
-.doctor-action {
+.doctor-card-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
-  min-width: 140px;
-  gap: 20px;
+  min-width: 180px;
+  gap: 22px;
+  margin-left: 32px;
+  margin-top: 8px;
 }
 
 .doctor-fee {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #222;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  margin-top: 2px;
+  text-align: right;
 }
 
 .book-button {
   background: #fff;
-  color: #1565c0;
-  border: 2px solid #1565c0;
+  color: #1976d2;
+  border: 2px solid #1976d2;
   border-radius: 8px;
-  padding: 8px 28px;
+  padding: 10px 38px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
+  outline: none;
 }
 
 .book-button:hover {
-  background: #1565c0;
+  background: #1976d2;
   color: #fff;
+}
+
+@media (max-width: 700px) {
+  .doctor-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 12px;
+  }
+  .doctor-card-right {
+    align-items: flex-start;
+    margin-left: 0;
+    margin-top: 16px;
+    min-width: unset;
+    width: 100%;
+  }
 }

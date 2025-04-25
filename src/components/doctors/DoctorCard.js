@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaMapMarkerAlt, FaHospitalAlt } from "react-icons/fa";
 import './DoctorCard.css';
 
 const DoctorCard = ({ doctor }) => {
@@ -8,34 +9,34 @@ const DoctorCard = ({ doctor }) => {
 
   return (
     <div className="doctor-card" data-testid="doctor-card">
-      <div className="doctor-info">
+      <div className="doctor-card-left">
         <div className="doctor-avatar">
-          <img 
-            src={doctor.photo || 'https://via.placeholder.com/80'} 
-            alt={doctor.name} 
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = 'https://via.placeholder.com/80';
-            }}
+          <img
+            src={doctor.photo || 'https://via.placeholder.com/80'}
+            alt={doctor.name}
+            onError={e => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/80'; }}
           />
         </div>
         <div className="doctor-details">
           <h2 data-testid="doctor-name">{doctor.name}</h2>
-          <p className="doctor-qualification">{doctor.qualification || doctor.doctor_introduction || ''}</p>
-          <p data-testid="doctor-specialty">
-            {doctor.specialties && doctor.specialties.length > 0 
-              ? doctor.specialties.join(', ') 
-              : (doctor.specialities && doctor.specialities.length > 0
-                ? doctor.specialities.map(s => s.name).join(', ')
-                : 'General Physician')}
-          </p>
-          <p data-testid="doctor-experience">{doctor.experienceText || doctor.experience || '0 yrs exp.'}</p>
-          <p className="doctor-location">{doctor.location || (doctor.clinic && doctor.clinic.address && doctor.clinic.address.locality) || ''}</p>
-          <p className="doctor-clinic">{doctor.clinic?.name || ''}</p>
+          <div data-testid="doctor-specialty" className="doctor-specialty">
+            {doctor.specialties && doctor.specialties.length > 0
+              ? doctor.specialties.join(', ')
+              : 'General Physician'}
+          </div>
+          <div data-testid="doctor-experience" className="doctor-experience">{doctor.experienceText || doctor.experience || '0 yrs exp.'}</div>
+          <div className="doctor-clinic-row">
+            <span className="doctor-clinic-icon"><FaHospitalAlt size={15} /></span>
+            <span className="doctor-clinic">{doctor.clinic || doctor.clinic?.name || ''}</span>
+          </div>
+          <div className="doctor-location-row">
+            <span className="doctor-location-icon"><FaMapMarkerAlt size={15} /></span>
+            <span className="doctor-location">{doctor.location || doctor.clinic?.address?.locality || ''}</span>
+          </div>
         </div>
       </div>
-      <div className="doctor-action">
-        <div className="doctor-fee" data-testid="doctor-fee">{doctor.fees}</div>
+      <div className="doctor-card-right">
+        <div className="doctor-fee" data-testid="doctor-fee">₹ {doctor.fees}</div>
         <button className="book-button">Book Appointment</button>
       </div>
     </div>

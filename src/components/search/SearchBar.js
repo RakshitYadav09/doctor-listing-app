@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import './SearchBar.css';
 
 const SearchBar = ({ searchTerm, onSearch, doctors }) => {
@@ -11,7 +12,6 @@ const SearchBar = ({ searchTerm, onSearch, doctors }) => {
     setInputValue(searchTerm);
   }, [searchTerm]);
 
-  // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (suggestionRef.current && !suggestionRef.current.contains(event.target)) {
@@ -30,12 +30,11 @@ const SearchBar = ({ searchTerm, onSearch, doctors }) => {
     setInputValue(value);
 
     if (value.trim()) {
-      // Filter doctors by name
       const matchedDoctors = doctors
         .filter(doctor => 
           doctor.name.toLowerCase().includes(value.toLowerCase())
         )
-        .slice(0, 3); // Limit to 3 suggestions
+        .slice(0, 5);
       
       setSuggestions(matchedDoctors);
       setShowSuggestions(matchedDoctors.length > 0);
@@ -70,7 +69,7 @@ const SearchBar = ({ searchTerm, onSearch, doctors }) => {
           onFocus={() => inputValue.trim() && setSuggestions.length > 0 && setShowSuggestions(true)}
         />
         <button type="submit" className="search-button">
-          <i className="search-icon">🔍</i>
+          <FaSearch className="search-icon" />
         </button>
       </form>
       
@@ -82,8 +81,27 @@ const SearchBar = ({ searchTerm, onSearch, doctors }) => {
               className="suggestion-item"
               data-testid="suggestion-item"
               onClick={() => handleSuggestionClick(doctor.name)}
+              style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', cursor: 'pointer' }}
             >
-              {doctor.name}
+              <img
+                src={doctor.photo || 'https://via.placeholder.com/36'}
+                alt={doctor.name}
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '1px solid #e0e0e0',
+                  background: '#f5f5f5',
+                  flexShrink: 0
+                }}
+              />
+              <div>
+                <div className="suggestion-name" style={{ fontWeight: 500 }}>{doctor.name}</div>
+                <div className="suggestion-specialty" style={{ fontSize: 13, color: '#888' }}>
+                  {doctor.specialties && doctor.specialties.length > 0 ? doctor.specialties.join(', ') : 'General Physician'}
+                </div>
+              </div>
             </div>
           ))}
         </div>
