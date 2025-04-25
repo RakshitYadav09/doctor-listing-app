@@ -83,3 +83,21 @@
   padding: 8px 0;
   margin-bottom: 18px;
 }
+@media (min-width: 900px) {
+  .filter-panel-container {
+    position: sticky;
+    top: 32px;
+    align-self: flex-start;
+    z-index: 2;
+  }
+}
+.filter-option input[type="checkbox"]:focus,
+.filter-option input[type="radio"]:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+.filter-option:hover {
+  background: #f5f7fa;
+  border-radius: 6px;
+}
