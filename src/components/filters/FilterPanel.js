@@ -1,0 +1,133 @@
+import React from 'react';
+import './FilterPanel.css';
+
+const specialtyTestIdMap = {
+  "General Physician": "General-Physician",
+  "Dentist": "Dentist",
+  "Dermatologist": "Dermatologist",
+  "Paediatrician": "Paediatrician",
+  "Gynaecologist": "Gynaecologist",
+  "ENT": "ENT",
+  "Diabetologist": "Diabetologist",
+  "Cardiologist": "Cardiologist",
+  "Physiotherapist": "Physiotherapist",
+  "Endocrinologist": "Endocrinologist",
+  "Orthopaedic": "Orthopaedic",
+  "Ophthalmologist": "Ophthalmologist",
+  "Gastroenterologist": "Gastroenterologist",
+  "Pulmonologist": "Pulmonologist",
+  "Psychiatrist": "Psychiatrist",
+  "Urologist": "Urologist",
+  "Dietitian/Nutritionist": "Dietitian-Nutritionist",
+  "Psychologist": "Psychologist",
+  "Sexologist": "Sexologist",
+  "Nephrologist": "Nephrologist",
+  "Neurologist": "Neurologist",
+  "Oncologist": "Oncologist",
+  "Ayurveda": "Ayurveda",
+  "Homeopath": "Homeopath"
+};
+
+const FilterPanel = ({ filters, onChange, specialties }) => {
+  const handleConsultationChange = (type) => {
+    onChange({
+      ...filters,
+      consultationType: type
+    });
+  };
+
+  const handleSpecialtyChange = (specialty) => {
+    let updatedSpecialties = [...filters.specialties];
+    if (updatedSpecialties.includes(specialty)) {
+      updatedSpecialties = updatedSpecialties.filter(s => s !== specialty);
+    } else {
+      updatedSpecialties.push(specialty);
+    }
+    onChange({
+      ...filters,
+      specialties: updatedSpecialties
+    });
+  };
+
+  const handleSortChange = (sortOption) => {
+    onChange({
+      ...filters,
+      sortBy: sortOption
+    });
+  };
+
+  return (
+    <div className="filter-panel">
+      <div className="filter-section">
+        <h3 data-testid="filter-header-sort">Sort by</h3>
+        <div className="filter-options">
+          <label className="filter-option">
+            <input
+              type="radio"
+              name="sort"
+              checked={filters.sortBy === 'fees'}
+              onChange={() => handleSortChange('fees')}
+              data-testid="sort-fees"
+            />
+            Price: Low-High
+          </label>
+          <label className="filter-option">
+            <input
+              type="radio"
+              name="sort"
+              checked={filters.sortBy === 'experience'}
+              onChange={() => handleSortChange('experience')}
+              data-testid="sort-experience"
+            />
+            Experience: Most Experience first
+          </label>
+        </div>
+      </div>
+
+      <div className="filter-section">
+        <h3 data-testid="filter-header-speciality">Specialities</h3>
+        <div className="filter-options specialty-options">
+          {Object.keys(specialtyTestIdMap).map(specialty => (
+            <label key={specialty} className="filter-option">
+              <input
+                type="checkbox"
+                checked={filters.specialties.includes(specialty)}
+                onChange={() => handleSpecialtyChange(specialty)}
+                data-testid={`filter-specialty-${specialtyTestIdMap[specialty]}`}
+              />
+              {specialty}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="filter-section">
+        <h3 data-testid="filter-header-moc">Mode of consultation</h3>
+        <div className="filter-options">
+          <label className="filter-option">
+            <input
+              type="radio"
+              name="consultation"
+              checked={filters.consultationType === 'video'}
+              onChange={() => handleConsultationChange('video')}
+              data-testid="filter-video-consult"
+            />
+            Video Consultation
+          </label>
+          <label className="filter-option">
+            <input
+              type="radio"
+              name="consultation"
+              checked={filters.consultationType === 'clinic'}
+              onChange={() => handleConsultationChange('clinic')}
+              data-testid="filter-in-clinic"
+            />
+            In-clinic Consultation
+          </label>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FilterPanel;

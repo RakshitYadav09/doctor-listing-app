@@ -1,0 +1,15 @@
+.doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 0;
+  color: #888;
+  font-size: 18px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(21,101,192,0.05);
+}
